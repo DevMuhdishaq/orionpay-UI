@@ -1,89 +1,89 @@
 # 🌌 OrionPay Frontend
 
-AI-Powered Multi-Chain Payment Dashboard for OrionPay.
+AI‑Powered Multi‑Chain Payment Dashboard
 
-The OrionPay frontend provides a powerful dashboard for managing payments, bulk payouts, AI fraud detection, and module marketplace features.
+## Overview
 
----
+OrionPay frontend is the user interface for:
 
-# 🚀 Features
-
-- Payment Dashboard
-- Bulk Payments
-- Multi-Chain Wallet Support
-- AI Fraud Insights
-- AI Price Analysis
-- Module Marketplace
-- Analytics Dashboard
-- Developer Settings
+- Multi‑chain payments
+- Bulk payments
+- AI fraud detection
+- AI price analysis
+- Voice‑initiated transactions
+- Module marketplace
 
 ---
 
-# 🧱 Tech Stack
+## Features
 
-- Next.js 14
+### 💸 Payments
+- Send payments
+- Payment links
+- Transaction history
+- Wallet management
+
+### 📦 Bulk Payments
+- CSV uploads
+- Payroll payouts
+- Batch payments
+
+### 🎙️ Voice Commands
+- Voice‑initiated payments
+- Natural language transactions
+- AI intent detection
+
+Example:
+"Send 50 USDC to John"
+
+### 🤖 AI Features
+- Fraud detection
+- Risk scoring
+- Price analysis
+- Smart routing
+
+### 🔗 Multi‑Chain Support
+- Stellar
+- Ethereum
+- Polygon
+- Solana
+
+### 🧩 Module Marketplace
+- Escrow
+- Payroll
+- Subscriptions
+- Split payments
+
+---
+
+## Tech Stack
+
+- Next.js
 - TypeScript
-- TailwindCSS
+- Tailwind
 - React Query
-- Zustand (optional)
 
 ---
 
-# 📁 Project Structure
+## Project Structure
+
 orionpay-frontend/
 
 app/
-├── dashboard/
-├── payments/
-├── bulk-payments/
-├── modules/
-├── ai/
-├── chains/
-└── settings/
-
 components/
-├── payments/
-├── bulk/
-├── modules/
-├── ai/
-└── chains/
-
 lib/
-├── api/
-
-
-├── chains/
-└── modules/
-
 hooks/
-
 styles/
 
-public/
+---
 
+## Getting Started
+
+npm install
+npm run dev
 
 ---
 
-# 🌐 Core Pages
+## License
 
-## Dashboard
-Overview of payments, analytics, and AI alerts
-
-## Payments
-Create and manage payments
-
-## Bulk Payments
-Upload CSV and send batch payments
-
-## Modules Marketplace
-Install and enable OrionPay modules
-
-## AI Insights
-Fraud detection & analytics
-
-## Chains
-Manage multi-chain settings
-
----
-
-# ⚙️ Environment Variables
+MIT
