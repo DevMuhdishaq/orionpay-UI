@@ -1,14 +1,43 @@
 'use client';
 
+import { useState } from 'react';
 import { useTheme } from '@/src/contexts/ThemeContext';
 import { useAppSelector, useAppDispatch } from '@/src/hooks/redux';
 import { selectCount, increment, decrement, reset } from '@/src/store/slices/counterSlice';
+import Spinner from '@/src/components/common/Spinner';
+import ButtonSpinner from '@/src/components/common/ButtonSpinner';
+import FullPageLoader from '@/src/components/common/FullPageLoader';
+import OrionLoader from '@/src/components/ui/OrionLoader';
 import { toastSuccess, toastError, toastInfo, toastLoading, toastPromise, toastDismiss } from '@/src/utils/toast';
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
+  const [fullPageLoading, setFullPageLoading] = useState(false);
+  const [orionFullscreenLoading, setOrionFullscreenLoading] = useState(false);
+  const [buttonLoading1, setButtonLoading1] = useState(false);
+  const [buttonLoading2, setButtonLoading2] = useState(false);
+
+  const triggerFullPageLoader = () => {
+    setFullPageLoading(true);
+    setTimeout(() => setFullPageLoading(false), 3000);
+  };
+
+  const triggerButtonLoader1 = () => {
+    setButtonLoading1(true);
+    setTimeout(() => setButtonLoading1(false), 2000);
+  };
+
+  const triggerButtonLoader2 = () => {
+    setButtonLoading2(true);
+    setTimeout(() => setButtonLoading2(false), 2000);
+  };
+
+  const triggerOrionFullscreenLoader = () => {
+    setOrionFullscreenLoading(true);
+    setTimeout(() => setOrionFullscreenLoading(false), 5000);
+  };
 
   const handleSuccessToast = () => {
     toastSuccess('Operation completed successfully!');
@@ -177,6 +206,110 @@ export default function Home() {
         </div>
         <p className="text-center mt-4 text-sm opacity-70">Redux DevTools will track all these state changes in your browser!</p>
       </div>
+
+      {/* Loading Spinners Demo */}
+      <div className="bg-white/80 dark:bg-gray-800/80 multi-color:bg-white/20 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 w-full max-w-4xl">
+        <h2 className="text-2xl font-bold mb-6 text-center">Loading Spinners Demo</h2>
+        
+        {/* Spinner Sizes */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold mb-4 text-center">Spinner Sizes (sm, md, lg)</h3>
+          <div className="flex items-end justify-center gap-8">
+            <div className="flex flex-col items-center gap-2">
+              <Spinner size="sm" className="text-blue-500" />
+              <span className="text-sm">sm</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner size="md" className="text-green-500" />
+              <span className="text-sm">md</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Spinner size="lg" className="text-purple-500" />
+              <span className="text-sm">lg</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Button Spinners */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold mb-4 text-center">Button Spinners</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            <ButtonSpinner
+              loading={buttonLoading1}
+              onClick={triggerButtonLoader1}
+              className="px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600"
+            >
+              Submit Form
+            </ButtonSpinner>
+            <ButtonSpinner
+              loading={buttonLoading2}
+              onClick={triggerButtonLoader2}
+              className="px-6 py-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600"
+            >
+              Save Changes
+            </ButtonSpinner>
+          </div>
+        </div>
+
+        {/* Full Page Loader */}
+        <div>
+          <h3 className="text-xl font-semibold mb-4 text-center">Full Page Loader</h3>
+          <div className="flex justify-center">
+            <button
+              onClick={triggerFullPageLoader}
+              className="px-6 py-3 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors shadow-md"
+            >
+              🖥️ Trigger Full Page Loading
+            </button>
+          </div>
+        </div>
+
+        <p className="text-center mt-6 text-sm opacity-70">All spinners use Tailwind&apos;s animate-spin and have proper accessibility labels!</p>
+      </div>
+
+      {/* Full Page Loader Component */}
+      <FullPageLoader isLoading={fullPageLoading} message="Processing your request..." />
+
+      {/* OrionPay Premium Loader Demo */}
+      <div className="bg-[#050816]/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-gray-700 w-full max-w-4xl mt-8">
+        <h2 className="text-2xl font-bold mb-6 text-center text-white">OrionPay Premium Loader Demo</h2>
+        
+        {/* Different sizes of OrionLoader */}
+        <div className="flex items-end justify-center gap-12 mb-8">
+          <div className="flex flex-col items-center gap-2">
+            <OrionLoader size={60} text="" />
+            <span className="text-sm text-white/70">size=60</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <OrionLoader size={100} text="" />
+            <span className="text-sm text-white/70">size=100</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <OrionLoader size={140} text="Loading..." />
+            <span className="text-sm text-white/70">size=140 with text</span>
+          </div>
+        </div>
+
+        {/* Fullscreen Orion Loader Trigger */}
+        <div className="flex justify-center">
+          <button
+            onClick={triggerOrionFullscreenLoader}
+            className="px-8 py-4 bg-gradient-to-r from-[#4F8CFF] to-[#8B5CF6] text-white rounded-xl font-semibold hover:opacity-90 transition-all shadow-lg"
+          >
+            ✨ Launch Fullscreen Orion Loader
+          </button>
+        </div>
+
+        <p className="text-center mt-6 text-sm text-white/70">Premium fintech-style loader with all animations: rotating logo, pulsing star, orbiting planet, and glowing orbit!</p>
+      </div>
+
+      {/* OrionLoader Fullscreen Component */}
+      {orionFullscreenLoading && (
+        <OrionLoader 
+          fullscreen 
+          text="Processing your transaction..." 
+        />
+      )}
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
